@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>Bookstore</display-name>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml </param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--login filter-->
+    <filter>
+        <filter-name>userLoginedFilter</filter-name>
+        <filter-class>Filter.UserLoginedFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>userLoginedFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <!--ajax filter-->
+    <!--<filter>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <filter-class>Filter.AjaxMessageLoginedFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/AddBookToShopCartAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/AddUserProfileAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/CreateOrderAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/ChangePasswordAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/ModifyBookAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/ModifyUserProfileAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/RemoveBookAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessageLoginedFilter</filter-name>
+        <url-pattern>/RemoveUserProfileAction</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ajaxMessagePriorityFilter</filter-name>
+        <filter-class>Filter.AjaxMessagePriorityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ajaxMessagePriorityFilter</filter-name>
+        <url-pattern>/RemoveUserAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxMessagePriorityFilter</filter-name>
+        <url-pattern>/ModifyUserAction</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <filter-class>Filter.AjaxPageLoginedFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/AddNewBookAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/DisplayBookAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/SearchBookAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/ShowShopCartAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/ShowUserProfileAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/ShowOrderAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPageLoginedFilter</filter-name>
+        <url-pattern>/StatisticsPersonalAction</url-pattern>
+    </filter-mapping>
+
+    &lt;!&ndash;ajax role filter&ndash;&gt;
+    <filter>
+        <filter-name>ajaxPagePriorityFilter</filter-name>
+        <filter-class>Filter.AjaxPagePriorityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ajaxPagePriorityFilter</filter-name>
+        <url-pattern>/ShowAllUserAction</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ajaxPagePriorityFilter</filter-name>
+        <url-pattern>/StatisticsByDateAction</url-pattern>
+    </filter-mapping>-->
+
+</web-app>

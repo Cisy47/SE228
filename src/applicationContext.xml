@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+         http://www.springframework.org/schema/data/mongo
+      	 http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+     <!--MongoDB 配置 -->
+    <mongo:mongo host="127.0.0.1" port="27017" />
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo"/>
+        <constructor-arg name="databaseName" value="test"/>
+    </bean>
+
+    <!-- IoC Dao -->
+    <bean id = "userDao" class="Dao.UserDaoImp">
+        <property name="mongoTemplate" ref="mongoTemplate"/>
+    </bean>
+    <bean id = "bookDao" class="Dao.BookDaoImp"></bean>
+    <bean id = "orderDao" class="Dao.OrderDaoImp"></bean>
+
+    <!-- IoC Biz -->
+    <bean id="userBiz" class="Biz.UserBizImp">
+        <property name="userDao">
+            <ref bean="userDao"/>
+            <!--<bean class="Dao.UserDaoImp"/>-->
+        </property>
+    </bean>
+    <bean id="BookBiz" class="Biz.BookBizImp">
+        <property name="bookDao">
+            <ref bean="bookDao"/>
+        </property>
+    </bean>
+    <bean id="orderBiz" class="Biz.OrderBizImp">
+        <property name="orderDao">
+            <ref bean="orderDao"/>
+        </property>
+        <property name="bookDao">
+            <ref bean="bookDao"/>
+        </property>
+    </bean>
+
+    <!-- IoC Action -->
+    <bean id="loginAction" class="method.LoginAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="registerAction" class="method.RegisterAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="showOrderAction" class="method.ShowOrderAction">
+        <property name="orderBiz" ref="orderBiz"/>
+    </bean>
+    <bean id="searchBookAction" class="method.SearchBookAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="showCartAction" class="method.ShowCartAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="showAllBookAction" class="method.ShowAllBookAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="personalStatisticAction" class="method.PersonalStatisticAction">
+        <property name="orderBiz" ref="orderBiz"/>
+    </bean>
+    <bean id="createOrderAction" class="method.CreateOrderAction">
+        <property name="orderBiz" ref="orderBiz"/>
+    </bean>
+    <bean id="bookDetailAction" class="method.BookDetailAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="modifyUserProfileAction" class="method.ModifyUserProfileAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="removeUserProfileAction" class="method.RemoveUserProfileAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="showUserProfileAction" class="method.ShowUserProfileAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="addUserProfileAction" class="method.AddUserProfileAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="showUserPhotoAction" class="method.ShowUserPhotoAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="addUserPhotoAction" class="method.AddUserPhotoAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+
+    <!-- manager -->
+    <bean id="modifyUserAction" class="method.ModifyUserAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="modifyBookAction" class="method.ModifyBookAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="removeUserAction" class="method.RemoveUserAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="removeBookAction" class="method.RemoveBookAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+    <bean id="addUserAction" class="method.AddUserAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="addBookAction" class="method.AddBookAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+
+    <bean id="showUserAction" class="method.ShowUserAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="changePasswordAction" class="method.ChangePasswordAction">
+        <property name="userBiz" ref="userBiz"/>
+    </bean>
+    <bean id="statisticsByDateAction" class="method.StatisticsByDateAction">
+        <property name="orderBiz" ref="orderBiz"/>
+    </bean>
+    <bean id="showBookToManagerAction" class="method.ShowBookToManagerAction">
+        <property name="bookBiz" ref="BookBiz"/>
+    </bean>
+
+
+</beans>

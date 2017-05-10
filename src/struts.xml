@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.devMode" value="false" />
+
+	<package name="basicstruts2" extends="struts-default, json-default" >
+
+		<action name="default">
+			<result>index.jsp</result>
+		</action>
+		<!-- Ajax page login & register -->
+		<action name="Login" class="loginAction">
+			<result name="success" type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="logout" class="method.LogoutAction">
+			<result name="success" >
+				Welcome.jsp
+			</result>
+		</action>
+		<action name="AccountCheck" class="method.IsExistedAccountAction">
+			<result name="success" type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="RegisterAction" class="method.RegisterAction">
+			<result name="success" type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+
+		<!-- Ajax page p.s. Don't need logined-->
+		<action name="showAllBook" class="showAllBookAction">
+			<result name="success">
+				SearchBookModel.jsp
+			</result>
+		</action>
+
+		<!-- Ajax json -->
+		<action name="addBookToCart" class="method.AddBookToCartAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+
+		<!-- Ajax page -->
+		<action name="showCart" class="showCartAction">
+			<result name="finish" type="json">
+				<param name="root">content</param>
+			</result>
+			<result name="continue">ShopCartModel.jsp</result>
+		</action>
+		<action name="searchBook" class="searchBookAction">
+			<result name="finish" type="json">
+				<param name="root">content</param>
+			</result>
+			<result name="continue">BuyBookModel.jsp</result>
+		</action>
+		<action name="showOrder" class="showOrderAction">
+			<result name="finish" type="json">
+				<param name="root">content</param>
+			</result>
+			<result name="continue">Order.jsp</result>
+		</action>
+		<action name="personalStatistic" class="personalStatisticAction">
+			<result name="continue">StatisticsModel.jsp</result>
+		</action>
+		<action name="createOrder" class="createOrderAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="bookDetail" class="bookDetailAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="modifyUserProfile" class="modifyUserProfileAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="removeUserProfile" class="removeUserProfileAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="showUserProfile" class="showUserProfileAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="addUserProfile" class="addUserProfileAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="showUserPhoto" class="showUserPhotoAction">
+			<result type="stream">
+				<param name="inputName">stream</param>
+				<param name="contentType">image/jpeg</param>
+			</result>
+		</action>
+		<action name="addUserPhoto" class="addUserPhotoAction">
+			<result name="success" type="redirect">
+				Info.jsp
+			</result>
+		</action>
+
+		<!-- Ajax page (manager) -->
+		<action name="modifyUser" class="modifyUserAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="modifyBook" class="modifyBookAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="removeUser" class="removeUserAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="removeBook" class="removeBookAction">
+			<result  type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="addUser" class="addUserAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+		<action name="addBook" class="addBookAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+
+		<action name="showUser" class="showUserAction">
+			<result name="success">UserModel.jsp</result>
+        </action>
+		<action name="changePassword" class="changePasswordAction">
+			<result type="json">
+				<param name="root">content</param>
+			</result>
+		</action>
+        <action name="statisticsByDate" class="statisticsByDateAction">
+            <result name="finish" type="json">
+                <param name="root">content</param>
+            </result>
+            <result name="continue">StatisticsByDateModel.jsp</result>
+        </action>
+		<action name="showBookToManager" class="showBookToManagerAction">
+			<result name="success">BookModel.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
